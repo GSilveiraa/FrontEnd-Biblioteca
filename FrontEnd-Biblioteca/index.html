@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraria</title>
+    <link rel="stylesheet" href="style.css">    
+</head>
+<body>
+    <header>
+        <img class="svg_book" src="/svg/book.svg">
+    </header>
+
+    <main>
+        <div class="left_screen">
+            <h1>Lista de Livros</h1>
+            <ul id="lista"></ul>
+
+            <div id="div_cards" class="div_cards">
+                <div class="card_style">
+                    <p class="titulo">Título: Dom Casmurro</p>
+                    <p class="autor">Autor: Machado de Assis</p>
+                    <p class="valor">R$: 79.99</p>
+                </div>
+            </div>
+        </div>
+        <div class="right_screen">
+            <div class="div_form">
+                <form id="id_form" class="form_style">
+                    <input type="text" placeholder="Título" name="titulo">
+                    <input type="text" placeholder="Autor" name="autor">
+                    <input type="text" placeholder="Valor" name="valor">
+                    <button type="submit">Adicionar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+      const API_URL = "https://back-end-biblioteca-sepia.vercel.app/livros";
+
+      fetch(API_URL)
+        .then(response => {
+          if (!response.ok) throw new Error("Erro ao buscar API");
+          return response.json();
+        })
+        .then(dados => {
+          const divCards = document.getElementById("div_cards");
+          divCards.innerHTML = "";
+
+          dados.forEach(livro => {
+            const card = document.createElement("div");
+            card.classList.add("card_style");
+
+            card.innerHTML = `
+              <p class="titulo">Título: ${livro.titulo}</p>
+              <p class="autor">Autor: ${livro.autor}</p>
+              <p class="valor">R$: ${livro.valor}</p>
+            `;
+
+            divCards.appendChild(card);
+          });
+        })
+        .catch(erro => console.error("Erro:", erro));
+    </script>
+  </body>
+</html>
