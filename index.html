@@ -16,7 +16,7 @@
             <h1>Lista de Livros</h1>
             <ul id="lista"></ul>
 
-            <div id="div_cards" class="div_cards">
+            <div class="div_cards">
                 <div class="card_style">
                     <p class="titulo">Título: Dom Casmurro</p>
                     <p class="autor">Autor: Machado de Assis</p>
@@ -45,7 +45,7 @@
           return response.json();
         })
         .then(dados => {
-          const divCards = document.getElementById("div_cards");
+          const divCards = document.querySelector(#div_cards);
           divCards.innerHTML = "";
 
           dados.forEach(livro => {
