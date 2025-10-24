@@ -48,6 +48,8 @@
           const divCards = document.querySelector('#div_cards');
           divCards.innerHTML = "";
 
+          console.log(dados);
+            
           dados.forEach(livro => {
             const card = document.createElement("div");
             card.classList.add("card_style");
