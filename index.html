@@ -54,13 +54,15 @@
             const card = document.createElement("div");
             card.classList.add("card_style");
 
-            card.innerHTML = `
+            if(livro) {
+              card.innerHTML = `
               <p class="titulo">Título: ${livro.titulo}</p>
               <p class="autor">Autor: ${livro.autor}</p>
               <p class="valor">R$: ${livro.valor}</p>
             `;
 
             divCards.appendChild(card);
+            }
           });
         })
         .catch(erro => console.error("Erro:", erro));
